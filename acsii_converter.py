@@ -1,30 +1,8 @@
 from PIL import Image, ImageDraw, ImageFont
+from json import load
 
-color_table = [
-    "#",
-    "%",
-    "$",
-    "[",
-    "/",
-    "|",
-    "t",
-    "l",
-    "*",
-    "^",
-    "a",
-    "e",
-    "n",
-    "u",
-    "r",
-    "=",
-    "+",
-    ";",
-    ":",
-    ".",
-    " "
-]
-
-color_table.reverse()
+with open("palette.json") as file:
+    color_table = load(file)
 
 file_name = input("Enter file name: ")
 
