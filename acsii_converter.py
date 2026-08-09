@@ -31,29 +31,37 @@ file_name = input("Enter file name: ")
 img = Image.open(f"resources/{file_name}")
 
 new_img_char = []
-img_brightness = []
 
 font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", 10)
-char_w, char_h = 6, 10
-width = img.size[0] * char_w * 2
+bbox = font.getbbox("#")
+char_w = bbox[2] - bbox[0]
+char_h = bbox[3] - bbox[1]
+ratio = char_h/char_w
+
+new_height = round(img.size[1] / ratio)
+img = img.resize((img.size[0], new_height))
+
+width = img.size[0] * char_w
 height = img.size[1] * char_h
 
 new_img = Image.new("RGB", (width, height), "black")
 draw = ImageDraw.Draw(new_img)
 
+img_brightness = []
 for x in range(img.size[0]):
     for y in range(img.size[1]):
         pixel = img.getpixel((x, y))
         img_brightness.append(sum(pixel))
 
 brighter = max(img_brightness)/(len(color_table)-1)
+percent = 0
 for y in range(img.size[1]):
     row = ""
     for x in range(img.size[0]):
         i = x * img.size[1] + y
         img_brightness[i] = round(img_brightness[i]/brighter)
 
-        row += " " + color_table[img_brightness[i]]
+        row +=  color_table[img_brightness[i]]
 
     draw.text((0, y  * char_h), row, font=font, fill="white")
     new_img_char.append(row)
