@@ -5,7 +5,8 @@ from json import load
 
 ###
 
-FILE_SIZE_RATIO = 1 # value from 0 to 1, 0 means that each pixel generate a character ( max quality ), 1 means file size will be as close as possible to the original
+IMAGE_SIZE_RATIO = 0 # value from 0 to 1, 0 means that each pixel generate a character ( max quality ), 1 means file size will be as close as possible to the original
+VIDEO_SIZE_RATIO = 1 # same but for video
 
 ###
 
@@ -68,7 +69,7 @@ valid_image_files = [
     "hdf"
 ]
 
-def convert(img, file_size_ratio=FILE_SIZE_RATIO):
+def convert(img, file_size_ratio:float=IMAGE_SIZE_RATIO):
 
     global font, char_h, char_w
 
@@ -138,7 +139,7 @@ elif file_format in valid_video_files:
     stream.height = 0
 
     for frame in content.decode(video=0):
-        acsii_image = convert(frame.to_image(), 1)[1]
+        acsii_image = convert(frame.to_image(), VIDEO_SIZE_RATIO)[1]
         if stream.width == 0:
             w, h = acsii_image.size
 

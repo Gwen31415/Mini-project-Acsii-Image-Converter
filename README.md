@@ -12,6 +12,8 @@ Everything is located in the resource file.
 There is configurable option at the top of the file such as :
 
 > FILE_SIZE_RATIO = 0.5 # value from 0 to 1, 0 means that each pixel generate a character ( max quality ), 1 means file size will be as close as possible to the original
+>
+> VIDEO_SIZE_RATIO = 1 # same but for video
 
 ## palette_maker.py :
 Used to make a palette for the acsii-converter
