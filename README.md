@@ -2,11 +2,16 @@
 A python converter that take an image file as input and output a text and an image file of the image converted in acsii type art
 
 ## acsii-converter.py :
-Used to create the acsii images
+Used to create the acsii images or videos
 
 Launch and input the name of your file (including the extension), it must be located in "resource/".
 
-It will create a txt file and a png file of the image located in the resource file.
+It will create a txt file and a png file from an image and a mp4 video from a video.
+Everything is located in the resource file.
+
+There is configurable option at the top of the file such as :
+
+> FILE_SIZE_RATIO = 0.5 # value from 0 to 1, 0 means that each pixel generate a character ( max quality ), 1 means file size will be as close as possible to the original
 
 ## palette_maker.py :
 Used to make a palette for the acsii-converter
